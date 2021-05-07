@@ -25,16 +25,30 @@ async function searchCv()
        let cvContent = source.cv_content;
        let teamplate = `
        
-       <div style="background-color:lightblue;padding:10px;box-shadow: 0px 0px 1px 1px grey">
-        "full name: " ${fullname}<br>
-        "Birthdate" ${birthdate}<br>
-        "Address: " ${address}<br>
-        "Phone: " ${phone}<br>
-        "Gender: " ${gender}<br>
-        "Major: " ${major}<br>
-        "Cv Content: " ${cvContent}<br>
-       <div>
-       
+       <div class="" data-ng-app="" data-ng-controller="myCtrl">
+       <table>
+         <tr>
+           <th>Full name</th>
+           <th>Birthdate</th>
+           <th>Address</th>
+           <th>Phone</th>
+           <th>Gender</th>
+           <th>Major</th>
+           <th>CV Content</th>
+         </tr>
+         <tr data-ng-repeat="customer in people | filter: table">
+           <td>${fullname}</td>
+           <td>${birthdate}</td>
+           <td>${address}</td>
+           <td>${phone}</td>
+           <td>${gender}</td>
+           <td>${major}</td>
+           <td>
+             ${cvContent}
+           </td>
+         </tr>
+       </table>
+     </div>
        `;
 
        $("#search_result").append(teamplate);
