@@ -3,7 +3,18 @@ from app import app
 from app.service.elastic import es
 @app.route("/",methods=['GET'])
 def home():
+
     return render_template("search_page.html")
+
+from app.service.selenium.timeviec_com import crawl_timviec
+@app.route("/crawl",methods=['GET'])
+def crawl():
+    crawl_timviec()
+    return make_response(jsonify("status",200))
+
+
+
+
 
 @app.route("/searchCV",methods=['POST'])
 def search_cv():
