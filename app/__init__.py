@@ -33,6 +33,6 @@ from app.controller import main_controller
 
 
 
-@app.shell_context_processor
-def make_shell_context():
-    return dict(dg=mysql_db)
+# @app.shell_context_processor
+# def make_shell_context():
+#     return dict(dg=mysql_db)
