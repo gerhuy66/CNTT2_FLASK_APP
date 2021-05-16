@@ -14,6 +14,22 @@ async function searchCv()
     let rp = await axios.post("/searchCV",ro);
     let rslist = rp.data.res;
     $("#search_result").text("");
+    $("#search_result").append(`
+    <div class="container-fluid"">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+                <th scope="col">Full name</th>
+                <th scope="col">Birthdate</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Major</th>
+                <th scope="col">CV Content</th>
+          </tr>
+        </thead>
+        <tbody>
+    `);
     rslist.forEach(function(item){
        let source = item._source;
        let fullname = source.full_name != undefined ? source.full_name : "";
@@ -25,34 +41,38 @@ async function searchCv()
        let cvContent = source.cv_content;
        let teamplate = `
        
-       <div class="" data-ng-app="" data-ng-controller="myCtrl">
-       <table>
-         <tr>
-           <th>Full name</th>
-           <th>Birthdate</th>
-           <th>Address</th>
-           <th>Phone</th>
-           <th>Gender</th>
-           <th>Major</th>
-           <th>CV Content</th>
-         </tr>
-         <tr data-ng-repeat="customer in people | filter: table">
-           <td>${fullname}</td>
-           <td>${birthdate}</td>
-           <td>${address}</td>
-           <td>${phone}</td>
-           <td>${gender}</td>
-           <td>${major}</td>
-           <td>
-             ${cvContent}
-           </td>
-         </tr>
-       </table>
-     </div>
+        <tr>
+          <td>
+            ${fullname}
+          </td>
+          <td>
+            ${birthdate}
+          </td>
+          <td>
+            ${address}
+          </td>
+          <td>
+            ${phone}
+          </td>
+          <td>
+            ${gender}
+          </td>
+          <td>
+            ${major}
+          </td>
+          <td>
+            ${cvContent}
+          </td>
+        </tr>
+
+
        `;
 
        $("#search_result").append(teamplate);
     });
-
+    $("#search_result").append(`
+    </tbody>
+    </table>
+    </div>`)
     $('html, body').animate({scrollTop:$(document).height()/3.5 - 20}, 'slow');
 }
