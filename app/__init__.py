@@ -9,8 +9,8 @@ from flask_s3 import FlaskS3
 
 app = Flask(__name__,static_url_path='/static')
 app.config['FLASKS3_BUCKET_NAME'] = 'cvsearchwebstorage'
-app.config['AWS_ACCESS_KEY_ID'] = 'AKIAXYZRVWASFJT4DGP7'
-app.config['AWS_SECRET_ACCESS_KEY'] = '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'
+app.config['AWS_ACCESS_KEY_ID'] = ''
+app.config['AWS_SECRET_ACCESS_KEY'] = ''
 s3 = FlaskS3(app)
 app.static_url_path ='https://cvsearchwebstorage.s3.ap-southeast-1.amazonaws.com/'
 app.debug = True
